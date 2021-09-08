@@ -19,3 +19,6 @@ jobs:
       - name: Install dependencies
         run: npm install
       - run: npm run build --if-present
+      - name: Run tests
+        run: |
+          cp .env.dev .env && npm run test
