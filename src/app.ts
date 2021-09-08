@@ -1,12 +1,16 @@
-import express from "express";
+import * as express from 'express';
+import * as bodyParser from 'body-parser';
+import * as dotenv from 'dotenv';
+import * as cors from 'cors';
+import * as helmet from 'helmet';
+
+dotenv.config();
+import countriesRoutes from './routers/countries.router';
 
 const app = express();
-const port = 3000;
+app.use(helmet());
+app.use(cors());
+app.use(bodyParser.json());
+app.use('/api/v1/countries', countriesRoutes);
 
-app.get("/", (req, res) => {
-  res.send("Well done!");
-});
-
-app.listen(port, () => {
-  console.log("The application is listening on port 3000!");
-});
+export default app;
